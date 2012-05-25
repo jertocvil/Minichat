@@ -56,6 +56,16 @@ public class ChatWindowActivity extends Activity {
         
     }
 
+    @Override
+    public void onStop(){
+    	super.onStop();
+    }
+    
+    @Override
+    public void onDestroy(){
+    	
+    }
+    
     
     
 }

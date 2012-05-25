@@ -9,7 +9,7 @@ import android.widget.EditText;
 import es.jertocvil.minichat.utils.Participante;
 
 @SuppressWarnings("serial")
-public class ChatClient extends Participante implements Serializable {
+public class ChatClient extends Participante {
 	
 	private EditText t;
 
