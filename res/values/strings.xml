@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MiniChatActivity!</string>
+    <string name="app_name">MiniChat</string>
+    <string name="txt_boton">Conectar</string>
+    <string name="nick">Nick</string>
+
+</resources>
