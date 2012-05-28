@@ -1,23 +1,20 @@
 package es.jertocvil.minichat;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.UnknownHostException;
 
-import android.app.Activity;
-import android.widget.EditText;
+import android.widget.Toast;
 import es.jertocvil.minichat.utils.Participante;
 
-@SuppressWarnings("serial")
 public class ChatClient extends Participante {
 	
-	private EditText t;
+	private ChatWindowActivity a;
 
-	protected ChatClient(String host, int puerto, String nick)
+	protected ChatClient(String host, int puerto, String nick, ChatWindowActivity a)
 			throws UnknownHostException, IOException
 			{
 		super(host, puerto, nick);
-
+		this.a = a;
 		
 	}
 	
@@ -26,7 +23,7 @@ public class ChatClient extends Participante {
 		
 	//	Toast.makeText(a.getApplicationContext(), mensaje, Toast.LENGTH_SHORT);
 
-		//a.runOnUiThread(new UIupdate(mensaje));
+		a.runOnUiThread(new UIupdate(mensaje));
 	
 	
 		
@@ -41,7 +38,7 @@ public class ChatClient extends Participante {
 		}
 		
 		public void run() {
-			t.append("\n" + msg );
+			Toast.makeText(a.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 		}
 		
 	}

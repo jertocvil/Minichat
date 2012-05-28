@@ -30,7 +30,7 @@ public class ChatWindowActivity extends Activity {
 			if (nick.equals(""))
 				throw new InvalidNickException("",
 						InvalidNickException.NICK_EN_BLANCO);
-			c = new ChatClient(server, Integer.parseInt(port), nick);
+			c = new ChatClient(server, Integer.parseInt(port), nick, this);
 
 		} catch (UnknownHostException e) {
 			Toast.makeText(getApplicationContext(),
