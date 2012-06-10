@@ -23,24 +23,12 @@ public class ChatClient extends Participante {
 		
 	//	Toast.makeText(a.getApplicationContext(), mensaje, Toast.LENGTH_SHORT);
 
-		a.runOnUiThread(new UIupdate(mensaje));
+		a.muestraMensaje(mensaje);
 	
 	
 		
 	}
 	
-	private class UIupdate implements Runnable {
-
-		private String msg;
-		
-		public UIupdate(String s){
-			msg = s;
-		}
-		
-		public void run() {
-			Toast.makeText(a.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-		}
-		
-	}
+	
 
 }

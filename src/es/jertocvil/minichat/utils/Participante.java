@@ -56,7 +56,7 @@ public abstract class Participante {
             return;
         }
         try {
-            IO.escribeLinea(nick + "> " +mensaje, salida);
+            IO.escribeLinea(mensaje, salida);
         } catch (IOException ex) {
 
             acabar();

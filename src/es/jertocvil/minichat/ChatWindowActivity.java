@@ -3,16 +3,22 @@ package es.jertocvil.minichat;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import es.jertocvil.minichat.utils.InvalidNickException;
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+import es.jertocvil.minichat.utils.InvalidNickException;
 
-public class ChatWindowActivity extends Activity {
+public class ChatWindowActivity extends Activity implements OnClickListener {
 	
 	private String server, nick, port;
 	private ChatClient c;
+	private Button b;
+	private EditText txtMensajes, txtEnviar;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,18 +60,49 @@ public class ChatWindowActivity extends Activity {
 			this.finish();
 		}
         
+		txtEnviar = (EditText)super.findViewById(R.id.txtEnviar);
+		
+		txtMensajes = (EditText)super.findViewById(R.id.txtMensajes);
+		txtMensajes.setBackgroundColor(Color.TRANSPARENT);
+		txtMensajes.setTextColor(Color.WHITE);
+		
+		b = (Button)super.findViewById(R.id.btnEnviar);
+		b.setOnClickListener(this);
+		
+		
     }
+    
+    public void muestraMensaje (String s){
+    	super.runOnUiThread(new UIupdate(s, txtMensajes));
+    }
+    
+	@Override
+	public void onClick(View v) {
+		
+		c.enviaMensaje(txtEnviar.getText().toString());
+		
+	}
+    
 
-    @Override
-    public void onStop(){
-    	super.onStop();
-    }
     
-    @Override
-    public void onDestroy(){
-    	
-    }
-    
-    
+    private class UIupdate implements Runnable {
+
+		private String msg;
+		private EditText e;
+		
+		public UIupdate(String s, EditText e){
+			msg = s;
+			this.e = e;
+		}
+		
+		public void run() {
+			e.append("\n" + msg);
+		}
+		
+	}
+
+
+
+
     
 }
