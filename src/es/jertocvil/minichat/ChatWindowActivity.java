@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import es.jertocvil.minichat.utils.InvalidNickException;
 
@@ -18,8 +19,9 @@ public class ChatWindowActivity extends Activity implements OnClickListener {
 	private String server, nick, port;
 	private ChatClient c;
 	private Button b;
-	private EditText txtMensajes, txtEnviar;
-	
+	private TextView txtMensajes;
+	private EditText txtEnviar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +63,9 @@ public class ChatWindowActivity extends Activity implements OnClickListener {
 		}
         
 		txtEnviar = (EditText)super.findViewById(R.id.txtEnviar);
-		
-		txtMensajes = (EditText)super.findViewById(R.id.txtMensajes);
+		txtMensajes = (TextView)super.findViewById(R.id.txtMensajes);
 		txtMensajes.setBackgroundColor(Color.TRANSPARENT);
 		txtMensajes.setTextColor(Color.WHITE);
-		
 		b = (Button)super.findViewById(R.id.btnEnviar);
 		b.setOnClickListener(this);
 		
@@ -88,9 +88,9 @@ public class ChatWindowActivity extends Activity implements OnClickListener {
     private class UIupdate implements Runnable {
 
 		private String msg;
-		private EditText e;
+		private TextView e;
 		
-		public UIupdate(String s, EditText e){
+		public UIupdate(String s, TextView e){
 			msg = s;
 			this.e = e;
 		}
